@@ -14,6 +14,8 @@ def softmax(x):
     x=x-np.max(x,axis=1,keepdims=True)
     x_exp=np.exp(x)
     return x_exp/np.sum(x_exp,axis=1,keepdims=True)
+def attention_weights(weight,v):
+    return np.dot(weight,v)
 if __name__ =="__main__":
     x=np.array([
         [1.0, 0.0, 1.0, 0.0],
@@ -37,6 +39,8 @@ if __name__ =="__main__":
     
     scaled_score=scaled_attention_score(score,d_k)
     print("Scaled attention Score is ",scaled_score)
+    attention_weight=attention_weights(softmaxs,v)
+    print("Attention weight is ",attention_weight)
     print("Score is ",score)
     print("Q is ",q)
     print("K is ",k) 
